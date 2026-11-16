@@ -1,0 +1,34 @@
+# Локальные данные и исходный черновик
+/ratings.dat
+/movies.dat
+/users.dat
+/1m.ipynb
+/ml-1m.zip
+
+# Окружения и служебные файлы Python/Jupyter
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+
+# Обученные модели и промежуточные данные
+artifacts/
+catboost_info/
+data/raw/
+data/processed/
+data/splits/
+
+# Локальные настройки и секреты
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

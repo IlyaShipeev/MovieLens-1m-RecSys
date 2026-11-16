@@ -1,0 +1,78 @@
+{
+  "data_dir": "..",
+  "positive_threshold": 4,
+  "split": {
+    "ranker_train_start": "2000-09-01T00:00:00Z",
+    "validation_start": "2001-01-01T00:00:00Z",
+    "test_start": "2001-02-01T00:00:00Z",
+    "test_end": "2001-03-01T00:00:00Z"
+  },
+  "retrieval": {
+    "candidate_policy": "ALS150_KNN100+Popular",
+    "als_candidates": 150,
+    "item_knn_candidates": 100,
+    "popular_candidates": 0,
+    "fill_with_popular": true,
+    "max_candidates": 250,
+    "als_parameters": {
+      "factors": 32,
+      "regularization": 0.1,
+      "alpha": 10.0,
+      "iterations": 15
+    },
+    "item_knn_neighbors": 20
+  },
+  "ranking": {
+    "selected_model": "CatBoost_tuned",
+    "features": [
+      "als_score",
+      "knn_score",
+      "als_rank",
+      "knn_rank",
+      "from_als",
+      "from_knn",
+      "from_popular",
+      "user_rating_count",
+      "user_mean_rating",
+      "item_rating_count",
+      "item_mean_rating"
+    ],
+    "cat_features": [],
+    "parameters": {
+      "depth": 4,
+      "learning_rate": 0.05,
+      "l2_leaf_reg": 3,
+      "random_strength": 1.0,
+      "iterations": 163,
+      "loss_function": "YetiRank",
+      "eval_metric": "NDCG:top=10",
+      "thread_count": 4,
+      "allow_writing_files": false
+    },
+    "selection": {
+      "dataset": "January 2001 validation",
+      "primary_metric": "end_to_end_ndcg_at_10",
+      "selected_best_iteration_zero_based": 162,
+      "hyperparameter_search_performed": true
+    },
+    "ablation": {
+      "max_iterations": 300,
+      "early_stopping_rounds": 40
+    },
+    "test_ranker_refit": false,
+    "previous_february_test_already_seen": true
+  },
+  "evaluation": {
+    "retrieval_k": [
+      50,
+      100,
+      250
+    ],
+    "ranking_k": [
+      5,
+      10,
+      20
+    ]
+  },
+  "seed": 42
+}
